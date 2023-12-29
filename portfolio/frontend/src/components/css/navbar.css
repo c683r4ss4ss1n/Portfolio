@@ -1,0 +1,30 @@
+/* Add these styles to your Tailwind CSS file or in the component style tag */
+@keyframes scaleUp {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.animate-icon {
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+/* Add these styles for menu animation */
+.max-h-0 {
+  max-height: 0;
+}
+
+.max-h-screen {
+  max-height: 100vh;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
