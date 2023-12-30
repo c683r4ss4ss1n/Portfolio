@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import Home from "./home/Home";
 
-const Content = () =>{
-    return(
-        <div className='flex'>
-            <p>Content</p>
-        </div>
-    )
-}
+const Content = () => {
+  return (
+    <div className="flex flex-col">
+      <Home />
+    </div>
+  );
+};
 
-export default Content
+export default Content;

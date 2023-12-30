@@ -1,6 +1,7 @@
+/* font.css */
+
 @font-face {
-  font-family: 'LittleLord'; /* Name the font family */
-  src: url('./components/fonts/LittleLord.ttf') format('truetype'); /* Specify the path to your TTF file */
-  font-weight: normal; /* Define font weight if needed */
-  font-style: normal; /* Define font style if needed */  
-}
+    font-family: 'CBRT';
+    src: url('./components/fonts/CBRT.ttf') format('truetype');
+  }
+  
