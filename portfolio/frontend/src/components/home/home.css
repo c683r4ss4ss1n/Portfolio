@@ -1,38 +1,21 @@
-.glitch {
-    position: relative;
-    display: inline-block;
+.home-container {
+    min-height: 100vh;
+    display: flex;
   }
   
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.8;
-    animation: glitch 1s infinite linear alternate-reverse;
+  .left-cell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.5s ease, color 0.5s ease;
   }
   
-  @keyframes glitch {
-    0%, 20%, 40%, 60%, 80% {
-      clip: rect(49px, 9999px, 2px, 0);
-      opacity: 1; /* Make the text visible during glitch */
-    }
-    5%, 25%, 45%, 65%, 85% {
-      clip: rect(90px, 9999px, 5px, 0);
-      opacity: 0; /* Hide the text during glitch */
-    }
-    10%, 30%, 50%, 70%, 90% {
-      clip: rect(24px, 9999px, 6px, 0);
-      opacity: 1; /* Make the text visible during glitch */
-    }
-    15%, 35%, 55%, 75%, 95% {
-      clip: rect(83px, 9999px, 11px, 0);
-      opacity: 0; /* Hide the text during glitch */
-    }
-    100% {
-      clip: rect(49px, 9999px, 2px, 0);
-      opacity: 1; /* Make the text visible after glitch */
-    }
+  .right-cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   

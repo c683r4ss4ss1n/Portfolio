@@ -1,11 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
-import '../../fonts/CBRT.ttf';
+import { useSpring, animated } from "react-spring";
+import "./home.css"; // Ensure correct file name here
+import "../fonts/CBRT.ttf";
+
 
 const Home = () => {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const [texts] = useState(["Programmer", "Junior Network Engineer", "Ethical Hacker", "Web Developer", "Gamer"]);
+  const [texts] = useState([
+    "Programmer",
+    "Junior Network Engineer",
+    "Ethical Hacker",
+    "Web Developer",
+    "Gamer",
+  ]);
   const [textIndex, setTextIndex] = useState(0);
   const h1Ref = useRef(null);
+
+  const scrollSpring = useSpring({
+    opacity: Math.min(1, window.scrollY / 500),
+    textColor: window.scrollY > 250 ? "#ffffff" : "#000000",
+  });
+
+  const handleScroll = () => {
+    // Show the background image when scrolling back to the top
+    if (window.scrollY <= 0) {
+      document.querySelector(".home-container").style.background = `url('https://themewagon.github.io/meyawo/assets/imgs/header.jpg')`;
+    }
+  };
 
   useEffect(() => {
     let interval = null;
@@ -45,34 +66,52 @@ const Home = () => {
 
     startAnimation();
 
+    // Listen for scroll events
+    window.addEventListener("scroll", () => {
+      handleScroll();
+      scrollSpring.opacity.set(Math.min(1, window.scrollY / 500));
+      scrollSpring.textColor.set(window.scrollY > 250 ? "#ffffff" : "#000000");
+    });
+
+    // Initial setup to show the background image
+    handleScroll();
+
     return () => {
       clearInterval(interval);
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [texts, textIndex]); // Added texts and textIndex to the dependency array
+  }, [texts, textIndex, letters, scrollSpring]); // Added texts, textIndex, letters, and scrollSpring to the dependency array
 
   return (
-    <div className="flex h-screen w-full">
-      <div className="flex lg:flex-row w-full md:flex-col sm:flex-col xs:flex-col">
-        {/* Left Cell */}
-        <div className="flex-1 flex items-center justify-center bg-gray-200">
-          {/* Content in Left Cell */}
-          <div className="text-center">
-            <h1 className="text-5xl font-bold lg:text-6xl xl:text-7xl">Hi,</h1>
-            <h1 className="text-4xl font-bold lg:text-5xl xl:text-6xl">I'm a</h1>
-            <h2 className="text-4xl font-black lg:text-2xl xl:text-4xl font-CBRT" ref={h1Ref} data-value={texts[textIndex]}>
-              {texts[textIndex]}
-            </h2>
-          </div>
-        </div>
+    <div
+      className="home-container bg-cover bg-no-repeat"
+      style={{ position: "relative" }}
+    >
+      <div className="left-cell">
+        <p className="text-8xl font-bold">Hi!</p>
+        <br />
+        <p className="text-6xl font-bold">I'm</p>
+        <p className="text-4xl font-extrabold text-yellow-600">
+          R Rafiou Khan Eshan
+        </p>
+        <br />
 
-        {/* Right Cell */}
-        <div className="flex-1 flex items-center justify-center bg-gray-300">
-          {/* Content in Right Cell */}
-          <div className="text-center">
-            <h1 className="text-3xl font-bold lg:text-4xl xl:text-5xl">Right Cell Content</h1>
-            {/* Add more content here */}
-          </div>
-        </div>
+        <animated.h1
+          id="#animatedText"
+          className="text-4xl font-bold font-CBRT"
+          ref={h1Ref}
+          data-value={texts[textIndex]}
+          style={{
+            color: scrollSpring.textColor,
+          }}
+        >
+          {texts[textIndex]}
+        </animated.h1>
+      </div>
+
+      <div className="right-cell">
+        <h1 className="text-3xl font-bold">Right Cell Content</h1>
+        {/* Add more content here */}
       </div>
     </div>
   );
