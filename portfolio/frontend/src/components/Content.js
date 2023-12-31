@@ -5,6 +5,7 @@ const Content = () => {
   return (
     <div className="flex flex-col">
       <Home />
+      <Home />
     </div>
   );
 };
