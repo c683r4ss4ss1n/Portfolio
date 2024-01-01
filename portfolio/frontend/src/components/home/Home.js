@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import "./home.css"; // Ensure correct file name here
-import "../fonts/CBRT.ttf";
-
-
+import { LuMailQuestion } from "react-icons/lu";
+import {FaHandPointRight} from "react-icons/fa"
 const Home = () => {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const [texts] = useState([
@@ -22,9 +21,20 @@ const Home = () => {
   });
 
   const handleScroll = () => {
-    // Show the background image when scrolling back to the top
-    if (window.scrollY <= 0) {
-      document.querySelector(".home-container").style.background = `url('https://themewagon.github.io/meyawo/assets/imgs/header.jpg')`;
+    const scrollValue = window.scrollY;
+    const homeContainer = document.getElementById("background");
+
+    if (homeContainer) {
+      // Calculate background opacity based on scroll position
+      const opacity = Math.min(1, scrollValue / 500);
+
+      // Apply background color and opacity to the home container
+      homeContainer.style.background = `rgba(24, 26, 27, ${opacity})`;
+
+      // Show the background image when scrolling back to the top
+      if (scrollValue <= 0) {
+        homeContainer.style.background = `url('https://themewagon.github.io/meyawo/assets/imgs/header.jpg')`;
+      }
     }
   };
 
@@ -84,14 +94,15 @@ const Home = () => {
 
   return (
     <div
-      className="home-container bg-cover bg-no-repeat"
+      id="background"
+      className="home-container"
       style={{ position: "relative" }}
     >
       <div className="left-cell">
-        <p className="text-8xl font-bold">Hi!</p>
+        <p className="text-8xl font-bold text-gray-300">Hi!</p>
         <br />
-        <p className="text-6xl font-bold">I'm</p>
-        <p className="text-4xl font-extrabold text-yellow-600">
+        <p className="text-6xl font-bold text-gray-300">I'm</p>
+        <p className="text-4xl font-extrabold text-gray-300">
           R Rafiou Khan Eshan
         </p>
         <br />
@@ -107,6 +118,24 @@ const Home = () => {
         >
           {texts[textIndex]}
         </animated.h1>
+        <div className="flex gap-4">
+          <button className="mt-4 gap-2 flex justify-center align-middle border-2 border-violet-600 pr-10 hover:pr-5 transition-all duration-300 hover:pl-5 py-1 rounded-full text-white hover:text-violet-500 bg-violet-600 hover:bg-[rgba(0,0,0,0.7)] shadow-sm hover:shadow-md shadow-violet-300">
+            <LuMailQuestion size={25} className="text-violet-600 mt-1" />
+            <a href="#contact" className="text-lg font-semibold italic">
+              Contact Me
+            </a>
+          </button>
+          <button className="mt-4 gap-2 flex justify-center align-middle border-2 border-violet-600 pl-10 hover:pr-5 transition-all duration-300 hover:pl-5 py-1 rounded-full text-white hover:text-violet-500 bg-violet-600 hover:bg-[rgba(0,0,0,0.7)] shadow-sm hover:shadow-md shadow-violet-300">
+            <a href="#contact" className="text-lg font-semibold italic">
+              Follow On Social Media
+            </a>
+            <FaHandPointRight size={25} className="text-violet-600 mt-1" />
+          </button>
+        </div>
+        <div className="flex flex-col text-center align-middle justify-center">
+            <p className="text-lg font-semibold pt-4">Made by hackers</p>
+            <p className="text-lg font-semibold pt-4">Presented by Professionals</p>
+        </div>
       </div>
 
       <div className="right-cell">

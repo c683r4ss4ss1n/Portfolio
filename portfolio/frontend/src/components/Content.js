@@ -4,7 +4,7 @@ import Home from "./home/Home";
 const Content = () => {
   return (
     <div className="flex flex-col">
-      <Home />
+      <Home id="content" />
       <Home />
     </div>
   );
