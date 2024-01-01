@@ -12,7 +12,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 py-4 text-lg text-gray-700 shadow-xl ${isMenuOpen ? 'bg-gray-200' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 py-4 text-lg text-gray-200 shadow-xl ${isMenuOpen ? 'bg-gray-900' : 'bg-[rgba(0,0,0,0.8)]'}`}>
       <div className="container mx-auto flex justify-between items-center">
         <div className="lg:visible sm:invisible">
           <img src={navImage} className="w-8" alt="navImage" />
@@ -31,44 +31,44 @@ const Nav = () => {
         </svg>
 
         <div className={`hidden md:flex md:items-center ${isMenuOpen ? 'block' : 'hidden'}`} id="menu">
-          <ul className="flex flex-col md:flex-row md:items-center md:space-x-4">
+          <ul className="flex gap-6 flex-col md:flex-row md:items-center md:space-x-4">
             <li>
-              <a id='#' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Home
               </a>
-            </li>
+         </li>
             <li>
-              <a id='#about' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#about' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 About
               </a>
-            </li>
+         </li>
             <li>
-              <a id='#services' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#services' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Services
               </a>
-            </li>
+         </li>
             <li>
-              <a id='#skill' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#skill' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Skill
               </a>
-            </li>
+         </li>
             <li>
-              <a id='#education' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#education' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Eduation
               </a>
-            </li>
+         </li>
             <li>
-              <a id='#experience' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#experience' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Experience
               </a>
-            </li>
+         </li>
             <li>
-              <a id='projects' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='projects' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Projects
               </a>
-            </li>
+         </li>
             <li>
-              <a id='#about' className="font-semibold text-violet-700 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#about' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Contact
               </a>
             </li>

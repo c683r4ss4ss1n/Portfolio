@@ -28,3 +28,8 @@ code {
     -2px 2px 0 gray,
     2px 2px 0 gray;
 }
+
+@font-face {
+    font-family: 'CBRT';
+    src: url('./components/fonts/CBRT.ttf') format('truetype');
+  }
