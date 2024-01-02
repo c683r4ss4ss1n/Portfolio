@@ -68,7 +68,7 @@ const Nav = () => {
               </a>
          </li>
             <li>
-              <a id='#about' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
+              <a id='#contact' className="font-bold text-violet-600 hover:text-cyan-300 hover:font-bold" href="/">
                 Contact
               </a>
             </li>

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSpring, animated } from "react-spring";
-import "./home.css"; // Ensure correct file name here
+import "./home.css";
 import { LuMailQuestion } from "react-icons/lu";
-import {FaHandPointRight} from "react-icons/fa"
+import { FaHandPointRight } from "react-icons/fa";
+
 const Home = () => {
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const [texts] = useState([
@@ -18,6 +19,7 @@ const Home = () => {
   const scrollSpring = useSpring({
     opacity: Math.min(1, window.scrollY / 500),
     textColor: window.scrollY > 250 ? "#ffffff" : "#000000",
+    backgroundColor: window.scrollY > 100 ? "#181A1B" : "transparent",
   });
 
   const handleScroll = () => {
@@ -25,15 +27,14 @@ const Home = () => {
     const homeContainer = document.getElementById("background");
 
     if (homeContainer) {
-      // Calculate background opacity based on scroll position
       const opacity = Math.min(1, scrollValue / 500);
 
-      // Apply background color and opacity to the home container
-      homeContainer.style.background = `rgba(24, 26, 27, ${opacity})`;
+      homeContainer.style.backgroundColor = `rgba(24, 26, 27, ${opacity})`;
 
-      // Show the background image when scrolling back to the top
-      if (scrollValue <= 0) {
-        homeContainer.style.background = `url('https://themewagon.github.io/meyawo/assets/imgs/header.jpg')`;
+      if (scrollValue <= 100) {
+        homeContainer.style.backgroundImage = `url('https://themewagon.github.io/meyawo/assets/imgs/header.jpg')`;
+      } else {
+        homeContainer.style.backgroundImage = "none"; // Reset background image if not at the top
       }
     }
   };
@@ -63,7 +64,6 @@ const Home = () => {
           if (iteration >= currentH1Ref.dataset.value.length) {
             clearInterval(interval);
 
-            // Show the same text for 2 seconds after animation
             setTimeout(() => {
               setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
             }, 2000);
@@ -76,27 +76,32 @@ const Home = () => {
 
     startAnimation();
 
-    // Listen for scroll events
     window.addEventListener("scroll", () => {
       handleScroll();
       scrollSpring.opacity.set(Math.min(1, window.scrollY / 500));
       scrollSpring.textColor.set(window.scrollY > 250 ? "#ffffff" : "#000000");
+      scrollSpring.backgroundColor.set(
+        window.scrollY > 100 ? "#181A1B" : "transparent"
+      );
     });
 
-    // Initial setup to show the background image
     handleScroll();
 
     return () => {
       clearInterval(interval);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [texts, textIndex, letters, scrollSpring]); // Added texts, textIndex, letters, and scrollSpring to the dependency array
+  }, [texts, textIndex, letters, scrollSpring]);
 
   return (
     <div
       id="background"
       className="home-container"
-      style={{ position: "relative" }}
+      style={{
+        position: "relative",
+        backgroundColor: scrollSpring.backgroundColor,
+        height: "100vh",
+      }}
     >
       <div className="left-cell">
         <p className="text-8xl font-bold text-gray-300">Hi!</p>
@@ -108,7 +113,6 @@ const Home = () => {
         <br />
 
         <animated.h1
-          id="#animatedText"
           className="text-4xl font-bold font-CBRT"
           ref={h1Ref}
           data-value={texts[textIndex]}
@@ -133,8 +137,12 @@ const Home = () => {
           </button>
         </div>
         <div className="flex flex-col text-center align-middle justify-center">
-            <p className="text-lg font-semibold pt-4">Made by hackers</p>
-            <p className="text-lg font-semibold pt-4">Presented by Professionals</p>
+          <p className="text-lg font-semibold pt-4 text-gray-300">
+            Made by hackers
+          </p>
+          <p className="text-lg font-semibold text-gray-200">
+            Presented by Professionals
+          </p>
         </div>
       </div>
 
