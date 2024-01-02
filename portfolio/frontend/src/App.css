@@ -37,12 +37,20 @@
   }
 }
 
-#background{
-    background-attachment: fixed;
-    background-repeat:no-repeat;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
-    background-size:cover;
-    background-position:center center;
-}
+#background {
+    background-attachment: fit;
+    background-repeat: no-repeat;
+    background-size: cover; /* Use 'cover' to make the background image cover the entire container */
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 3s ease-in-out;
+    background-image: url('https://themewagon.github.io/meyawo/assets/imgs/header.jpg');
+  }
+  
+  .home-container {
+    overflow: hidden;
+  }
+  
